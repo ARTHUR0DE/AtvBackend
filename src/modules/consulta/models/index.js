@@ -1,5 +1,4 @@
-import client from '../../../database/client.js'
-
+import client from "../../../config/database.js"
 class ConsultaModel {
     static async agendar(id_consulta, data, hora, status, id_medico, id_paciente) {
         const dados = [id_consulta, data, hora, status, id_medico, id_paciente] 
@@ -8,15 +7,15 @@ class ConsultaModel {
         return resultado.rows
     }
 
-    static async listarConsultasDeMedico(id_consulta) {
-        const dados = [id_consulta]
+    static async listarConsultasDeMedico(id_medico) {
+        const dados = [id_medico]
         const consulta = `select * from consulta where id_medico = $1;`
         const resultado = await client.query(consulta, dados)
         return resultado.rows
     }
 
-    static async listarConsultasDePaciente(id_consulta) {
-        const dados = [id_consulta]
+    static async listarConsultasDePaciente(id_paciente) {
+        const dados = [id_paciente]
         const consulta = `select * from consulta where id_paciente = $1;`
         const resultado = await client.query(consulta, dados)
         return resultado.rows

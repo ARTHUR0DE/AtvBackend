@@ -1,4 +1,4 @@
-import ConsultaModel from "../models"
+import ConsultaModel from "../models/index.js"
 
 
 class ConsultaController {
@@ -8,7 +8,7 @@ class ConsultaController {
                 return console.error("Todos os campos são obrigatórios.")
             }
             const consulta = await ConsultaModel.agendar(id_consulta, data, hora, status, id_medico, id_paciente)
-            return consulta
+            return console.table(consulta)
         } catch (error) {
             console.error("Erro ao agendar consulta:", error.message)   
         }
@@ -21,7 +21,7 @@ class ConsultaController {
                 return console.log("Nenhuma consulta encontrada para o médico.")
             }
             console.log("Consultas do médico: ")
-            return consultas
+            return console.table(consultas)
     } catch (error) {
             console.error("Erro ao listar consultas do médico: ", error.message)
         }
@@ -34,7 +34,7 @@ class ConsultaController {
                 return console.log("Nenhuma consulta encontrada para o paciente.")
             }
             console.log("Consultas do paciente: ")
-            return consultas
+            return console.table(consultas)
         } catch (error) {
             console.error("Erro ao listar consultas do paciente: ", error.message)
         }
@@ -46,7 +46,7 @@ class ConsultaController {
                 return console.log("Nenhuma consulta encontrada com esse status.")
             }
             console.log("Consultas filtradas por status: ")
-            return consultas
+            return console.table(consultas)
         } catch (error) {
             console.error("Erro ao filtrar consultas por status: ", error.message)
         }
@@ -70,11 +70,23 @@ class ConsultaController {
                 return console.log("Nenhuma consulta encontrada para atualizar.")
             }
             console.log("Status da consulta atualizado com sucesso!")
-            return consulta
+            return console.table(consulta)
         } catch (error) {
             console.error("Erro ao atualizar status da consulta: ", error.message)
         }
     }
+        static async removerConsulta(id_consulta) {
+        try {
+            const resultado = await ConsultaModel.removerConsulta(id_consulta)
+            if (resultado) {
+                return console.log("Consulta removida com sucesso.")
+            } else {
+                console.log("Erro ao remover consulta.")
+            }
+        } catch (error) {
+            console.error("Erro ao remover consulta:", error.message)
+        }
+}
 }
 
 export default ConsultaController

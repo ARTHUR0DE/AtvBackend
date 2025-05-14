@@ -1,4 +1,4 @@
-import client from "../../../config/database"
+import client from "../../../config/database.js"
 
 class MedicoModel {
     static async cadastrarMedico(id_medico, nome, especialidade, crm) {

@@ -1,4 +1,4 @@
-import ConsultaController from "../controllers"
+import ConsultaController from "../controllers/index.js"
 import PromptSync from "prompt-sync"
 const input = PromptSync()
 

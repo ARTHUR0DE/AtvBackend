@@ -19,69 +19,149 @@ async function criarTabelas() {
 
 }
 
-function menu() {
+ async function menuPrincipal() {
     while (true) {
-        console.log("\nMenu:");
-        console.log("1. Consultar dados de consultas");
-        console.log("2. Consultar dados de médicos");
-        console.log("3. Consultar dados de pacientes");
-        console.log("4. Adicionar médico");
-        console.log("5. Adicionar paciente");
-        console.log("6. Adicionar consulta");
-        console.log("7. Atualizar médico");
-        console.log("8. Atualizar paciente");
-        console.log("9. Atualizar consulta");
-        console.log("10. Remover médico");
-        console.log("11. Remover paciente");
-        console.log("12. Remover consulta");
-        console.log("13. Sair");
+        console.log("\nMenu Principal:")
+        console.log("1. Gerenciar Consultas")
+        console.log("2. Gerenciar Médicos")
+        console.log("3. Gerenciar Pacientes")
+        console.log("4. Sair")
 
-        const opcao = input("Escolha uma opção: ");
+        const opcao = input("Escolha uma opção: ")
 
         switch (opcao) {
             case "1":
-            ConsultaView.consultar();
-            break;
+              await  menuConsulta()
+                break
             case "2":
-            MedicoView.consultar();
-            break;
+               await menuMedico()
+                break
             case "3":
-            PacienteView.consultar();
-            break;
+              await  menuPaciente()
+                break
             case "4":
-            MedicoView.adicionar();
-            break;
-            case "5":
-            PacienteView.adicionar();
-            break;
-            case "6":
-            ConsultaView.adicionar();
-            break;
-            case "7":
-            MedicoView.atualizar();
-            break;
-            case "8":
-            PacienteView.atualizar();
-            break;
-            case "9":
-            ConsultaView.atualizar();
-            break;
-            case "10":
-            MedicoView.remover();
-            break;
-            case "11":
-            PacienteView.remover();
-            break;
-            case "12":
-            ConsultaView.remover();
-            break;
-            case "13":
-            console.log("Saindo...");
-            return;
+                console.log("Saindo...")
+                return
             default:
-            console.log("Opção inválida. Tente novamente.");
-        }
+                console.log("Opção inválida. Tente novamente.")
         }
     }
+}
 
-    menu();
+async function menuConsulta() {
+    while (true) {
+        console.log("\nMenu de Consultas:")
+        console.log("1. Adicionar consulta.")
+        console.log("2. Listar consultas de um medico.")
+        console.log("3. Total de consultas por medico.")
+        console.log("4. Listar consultas por paciente")
+        console.log("5. Atualizar status de consulta");
+        console.log("6. Filtrar por status")
+        console.log("7. Remover consulta")
+        console.log("8. Voltar ao menu principal")
+
+        const opcao = input("Escolha uma opção: ")
+
+        switch (opcao) {
+            case "1":
+               await ConsultaView.agendarConsulta()
+                break
+            case "2":
+               await ConsultaView.listarConsultasDeMedico()
+                break
+            case "3":
+               await ConsultaView.totalConsultasPorMedico()
+                break
+            case "4":
+               await ConsultaView.listarConsultasDePaciente()
+                break
+            case "5":
+               await ConsultaView.atualizarStatus()
+                break
+            case "6":
+               await ConsultaView.filtrarPorStatus()
+                break
+            case "7":
+               await ConsultaView.removerConsulta()
+                break
+            case "8":
+                return
+            default:
+                console.log("Opção inválida. Tente novamente.")
+        }
+    }
+}
+
+async function menuMedico() {
+    while (true) {
+        console.log("\nMenu de Médicos:")
+        console.log("1. Consultar médico por CRM")
+        console.log("2. Listar todos os médicos")
+        console.log("3. Adicionar médico")
+        console.log("4. Atualizar médico")
+        console.log("5. Remover médico")
+        console.log("6. Voltar ao menu principal")
+
+        const opcao = input("Escolha uma opção: ")
+
+        switch (opcao) {
+            case "1":
+               await MedicoView.listarPorCrm()
+                break
+            case "2":
+              await  MedicoView. listarMedicos()
+                break
+            case "3":
+               await MedicoView.cadastrarMedico()
+                break
+            case "4":
+               await MedicoView.atualizarMedico()
+                break
+            case "5":
+               await MedicoView.removerMedico()
+                break
+            case "6":
+                return
+            default:
+                console.log("Opção inválida. Tente novamente.")
+        }
+    }
+}
+
+async function menuPaciente() {
+    while (true) {
+        console.log("\nMenu de Pacientes:")
+        console.log("1. Adicionar paciente")
+        console.log("2. Listar pacientes")
+        console.log("3. Listar pacientes por CPF")
+        console.log("4. Atualizar paciente")
+        console.log("5. Remover paciente")
+        console.log("6. Voltar ao menu principal")
+
+        const opcao = input("Escolha uma opção: ")
+
+        switch (opcao) {
+            case "1":
+               await PacienteView.cadastrarPaciente()
+                break
+            case "2":
+               await PacienteView.listarPacientes()
+                break
+            case "3":
+               await PacienteView.listarPorCpf()
+                break
+            case "4":
+               await PacienteView.atualizarPaciente()
+                break
+            case "5":
+               await PacienteView.removerPaciente()
+                break
+            case "6":
+                return
+            default:
+                console.log("Opção inválida. Tente novamente.")
+        }
+    }
+}
+
+menuPrincipal()

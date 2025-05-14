@@ -7,7 +7,7 @@ class MedicoController {
                 return console.error("Todos os campos são obrigatórios.")
             }
             const medico = await medicoModel.cadastrarMedico(id_medico, nome, especialidade, crm)
-            return medico
+            return console.table(medico)
         } catch (error) {
             console.error("Erro ao cadastrar médico:", error.message)
         }
@@ -20,7 +20,7 @@ class MedicoController {
                 return console.log("Nenhum médico encontrado.")
             }
             console.log("Lista de médicos: ")
-            return medicos
+            return console.table(medicos)
         } catch (error) {
             console.error("Erro ao listar médicos: ", error.message)
         }
@@ -33,7 +33,7 @@ class MedicoController {
                 return console.log("Nenhum médico encontrado com esse CRM.")
             }
             console.log("Médico encontrado: ")
-            return medico
+            return console.table(medico)
         } catch (error) {
             console.error("Erro ao listar médico por CRM: ", error.message)
         }
@@ -45,7 +45,7 @@ class MedicoController {
                 return console.error("Todos os campos são obrigatórios.")
             }
             const medico = await medicoModel.AtualizarMedico(id_medico, nome, especialidade, crm)
-            return medico
+            return console.table(medico)
         } catch (error) {
             console.error("Erro ao atualizar médico:", error.message)
         }
@@ -55,7 +55,7 @@ class MedicoController {
         try {
             const resultado = await medicoModel.removerMedico(id_medico)
             if (resultado) {
-                console.log("Médico removido com sucesso.")
+               return console.log("Médico removido com sucesso.")
             } else {
                 console.log("Erro ao remover médico.")
             }

@@ -1,4 +1,4 @@
-import PacienteModel from "../models"
+import PacienteModel from "../models/index.js"
 
 class PacienteController {
     static async cadastrarPaciente(id_paciente, nome, cpf, telefone) {
@@ -7,7 +7,7 @@ class PacienteController {
                 return console.error("Todos os campos são obrigatórios.")
             }
             const paciente = await PacienteModel.cadastrarPaciente(id_paciente, nome, cpf, telefone)
-            return paciente
+            return console.table(paciente)
         } catch (error) {
             console.error("Erro ao cadastrar paciente:", error.message)
         }
@@ -20,7 +20,7 @@ class PacienteController {
                 return console.log("Nenhum paciente encontrado.")
             }
             console.log("Lista de pacientes: ")
-            return pacientes
+            return console.table(pacientes)
         } catch (error) {
             console.error("Erro ao listar pacientes: ", error.message)
         }
@@ -33,7 +33,7 @@ class PacienteController {
                 return console.log("Nenhum paciente encontrado com esse CPF.")
             }
             console.log("Paciente encontrado: ")
-            return paciente
+            return console.table(paciente)
         } catch (error) {
             console.error("Erro ao buscar paciente por CPF: ", error.message)
         }
@@ -45,7 +45,7 @@ class PacienteController {
                 return console.error("Todos os campos são obrigatórios.")
             }
             const paciente = await PacienteModel.atualizarPaciente(id_paciente, nome, cpf, telefone)
-            return paciente
+            return console.table(paciente)
         } catch (error) {
             console.error("Erro ao atualizar paciente:", error.message)
         }
@@ -54,7 +54,7 @@ class PacienteController {
     static async removerPaciente(id_paciente) {
         try {
             const resultado = await PacienteModel.removerPaciente(id_paciente)
-            return resultado
+            return console.table(resultado)
         } catch (error) {
             console.error("Erro ao remover paciente:", error.message)
         }

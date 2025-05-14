@@ -17,7 +17,7 @@ class CriarTabela {
     const consulta = `create table if not exists paciente(
     nome varchar(100) not null,
     id_paciente integer not null primary key,
-    CPF varchar(14) not null,
+    CPF char(11) not null,
     telefone varchar(15) not null
     );`
     await client.query(consulta)

@@ -1,4 +1,4 @@
-import MedicoController from "../controllers"
+import MedicoController from "../controllers/index.js"
 import PromptSync from "prompt-sync"
 const input = PromptSync()
 

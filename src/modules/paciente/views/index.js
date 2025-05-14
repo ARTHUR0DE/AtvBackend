@@ -1,14 +1,14 @@
-import PacienteController from "../controllers"
+import PacienteController from "../controllers/index.js"
 import PromptSync from "prompt-sync"
 const input = PromptSync()
 
 class PacienteView {
     static async cadastrarPaciente() {
-        const id_paciente = input("Digite o ID do paciente: ")
-        const nome = input("Digite o nome do paciente: ")
-        const idade = input("Digite a idade do paciente: ")
-        const cpf = input("Digite o CPF do paciente: ")
-        const paciente = await PacienteController.cadastrarPaciente(id_paciente, nome, idade, cpf)
+        const nome = input("Digite o ID do paciente: ")
+        const id_paciente = input("Digite o Nome do paciente: ")
+        const cpf = input("Digite a CPF do paciente: ")
+        const telefone = input("Digite o Telefone do paciente: ")
+        const paciente = await PacienteController.cadastrarPaciente(nome, id_paciente, cpf, telefone)
         console.table(paciente)
     }
 
